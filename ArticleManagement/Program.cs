@@ -15,9 +15,17 @@ namespace ArticleManagement
             var listArticles = InitArticleData();
             var listAvailableDiscounts = InitAvailableDiscount();
 
+            Scenario1(listArticles, listAvailableDiscounts);
+            Scenario2(listArticles, listAvailableDiscounts);
+
+            Console.ReadLine();
+        }
+
+        private static void Scenario1(List<IArticle> listArticles, List<IDiscount> listAvailableDiscounts)
+        {
             var _discountExecution = new PeriodDiscountExecution();
             var applyingDiscount = listAvailableDiscounts.First(d => d.Name == "Summer Discount");
-            var article = listArticles.First();
+            var article = listArticles[0];
             ArticleSalePriceCalculator.CalculatePriceWithoutDiscount(ref article);
             Console.WriteLine("===Article before discount===");
             ArticlePrinter.PrintArticle(article);
@@ -27,8 +35,22 @@ namespace ArticleManagement
             _discountExecution.ApplyDiscount(applyingDiscount, ref article);
             Console.WriteLine("===Article after discount===");
             ArticlePrinter.PrintArticle(article);
-            
-            Console.ReadLine();
+        }
+
+        private static void Scenario2(List<IArticle> listArticles, List<IDiscount> listAvailableDiscounts)
+        {
+            var _discountExecution = new FirstBuyDiscountExecution();
+            var applyingDiscount = listAvailableDiscounts.First(d => d.Name == "First Buy");
+            var article = listArticles[1];
+            ArticleSalePriceCalculator.CalculatePriceWithoutDiscount(ref article);
+            Console.WriteLine("===Article before discount===");
+            ArticlePrinter.PrintArticle(article);
+            Console.WriteLine("===Discount is being applied===");
+            DiscountPrinter.PrintDiscount(applyingDiscount);
+            Console.WriteLine("===Applying discount===");
+            _discountExecution.ApplyDiscount(applyingDiscount, ref article);
+            Console.WriteLine("===Article after discount===");
+            ArticlePrinter.PrintArticle(article);
         }
 
         private static List<IDiscount> InitAvailableDiscount()

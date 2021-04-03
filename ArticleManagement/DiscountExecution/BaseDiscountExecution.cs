@@ -1,5 +1,4 @@
-﻿using ArticleManagement.DiscountHandlers;
-using ArticleManagement.Models.Article;
+﻿using ArticleManagement.Models.Article;
 using ArticleManagement.Models.Discount;
 using System;
 

@@ -5,7 +5,7 @@ using System;
 namespace ArticleManagement.DiscountHandlers
 {
     public class DiscountHandler : IDiscountHandler
-    { 
+    {
         private readonly Predicate<object> _canDiscounted;
         private readonly Action<IDiscount, IArticle> _discount;
 

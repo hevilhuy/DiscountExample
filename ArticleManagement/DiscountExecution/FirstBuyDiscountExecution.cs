@@ -25,7 +25,7 @@ namespace ArticleManagement.DiscountExecution
         {
             base.ValidateInput(discount, article);
 
-            if(discount is not FirstBuyDiscount)
+            if (discount is not FirstBuyDiscount)
             {
                 throw new ArgumentException();
             }
